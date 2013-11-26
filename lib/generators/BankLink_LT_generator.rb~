@@ -1,0 +1,6 @@
+class YourGemNameRailtie < Rails::Generators::Base
+  source_root(File.expand_path(File.dirname(__FILE__))
+  def copy_initializer
+    copy_file 'BankLink_LT.rb', ''
+  end
+end
