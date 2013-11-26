@@ -19,7 +19,7 @@ openssl x509 -x509toreq -in target_bank_certificate.crt -out target_bank_certifi
 check
 openssl x509 -in target_bank_certificate.crt -text -noout
 
-You will have provide your banks with generated target_bank_certificate_requests.
+You will have to provide your banks with generated target_bank_certificate_requests.
 
 
 =============
