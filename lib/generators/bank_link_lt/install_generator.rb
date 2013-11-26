@@ -1,5 +1,4 @@
 require 'rails/generators/base'
-#require 'etc'
 module BankLinkLt
   class InstallGenerator < Rails::Generators::Base
     source_root(File.expand_path(File.dirname(__FILE__)))
@@ -7,9 +6,9 @@ module BankLinkLt
 
 
     INITIALIZER_NAME = 'bank_link_lt.rb'
-    class_option :certificates_path, :type => :string, :default => CERTIFICATES_PATH
     CERTIFICATES_PATH = 'certificates/'
-    CERTIFICATES_FULL_PATH = Rails.root + options[:certificates_subject]
+
+    class_option :certificates_path, :type => :string, :default => CERTIFICATES_PATH
 
 
 
@@ -24,12 +23,12 @@ module BankLinkLt
 
     def create_certificates_directory
 
-      unless File.directory?(CERTIFICATES_FULL_PATH)|| File.symlink?(CERTIFICATES_FULL_PATH)
-        puts "Creating directory for certificates at #{Rails.root} #{CERTIFICATES_PATH} "
-        Dir.mkdir "#{CERTIFICATES_FULL_PATH}"
+      unless File.directory?(Rails.root + options[:certificates_path])|| File.symlink?(Rails.root + options[:certificates_path])
+        puts "Creating directory for certificates at #{File.expand_path(Rails.root +CERTIFICATES_PATH)}"
+        Dir.mkdir "#{Rails.root + options[:certificates_path]}"
         #system "chmod  700 #{Rails.root + CERTIFICATES_PATH}"
       else
-        puts "Directory for certificates at #{CERTIFICATES_FULL_PATH} already exists"
+        puts "Directory for certificates at #{Rails.root + options[:certificates_path]} already exists"
       end
 
     end
@@ -37,6 +36,9 @@ module BankLinkLt
     def generate_certificates
       puts "run 'rails g bank_link_lt:certificates'  "
     end
-
+    private
+#    def Rails.root + options[:certificates_path]
+#        (Rails.root + options[:certificates_path]).to_s
+#    end
   end
 end

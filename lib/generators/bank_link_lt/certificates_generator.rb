@@ -11,17 +11,16 @@ module BankLinkLt
 
       class_option :certificates_subject, :type => :string, :default => '/C=LT/L=Vilnius/O=JUSU UAB/OU=BankLink/CN=www.jusu_www.lt/emailAddress=info@jusu_www.lt/'
       class_option :certificates_path, :type => :string, :default => CERTIFICATES_PATH
-      CERTIFICATES_FULL_PATH = Rails.root + options[:certificates_subject]
 
 
       def create_certificates_directory
 
-        unless File.directory?(CERTIFICATES_FULL_PATH)|| File.symlink?(CERTIFICATES_FULL_PATH)
-          puts "Creating directory for certificates at #{CERTIFICATES_FULL_PATH} "
-          Dir.mkdir "#{CERTIFICATES_FULL_PATH}"
+        unless File.directory?(Rails.root + options[:certificates_path])|| File.symlink?(Rails.root + options[:certificates_path])
+          puts "Creating directory for certificates at #{File.expand_path(Rails.root +CERTIFICATES_PATH)}"
+          Dir.mkdir "#{Rails.root + options[:certificates_path]}"
           #system "chmod  700 #{Rails.root + CERTIFICATES_PATH}"
         else
-          puts "Directory for certificates at #{CERTIFICATES_FULL_PATH} already exists"
+          puts "Directory for certificates at #{Rails.root + options[:certificates_path]} already exists"
         end
 
       end
