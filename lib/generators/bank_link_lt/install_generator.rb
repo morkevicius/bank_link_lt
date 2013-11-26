@@ -6,19 +6,19 @@ module BankLinkLt
 
 
     INITIALIZER_NAME = 'bank_link_lt.rb'
-    CERTIFICATES_PATH = 'certificates/'
+    CERTIFICATES_PATH = '/certificates/'
 
 
     def copy_initializer
-      unless File.exist?('config/initializers/' + INITIALIZER_NAME) || File.symlink?('config/initializers/'+INITIALIZER_NAME)
-        copy_file 'initializers/' + INITIALIZER_NAME, 'config/initializers/'+INITIALIZER_NAME
+      unless File.exist?(Rails.root + 'config/initializers/' + INITIALIZER_NAME) || File.symlink?(Rails.root + 'config/initializers/' + INITIALIZER_NAME)
+        copy_file 'initializers/' + INITIALIZER_NAME, Rails.root + 'config/initializers/' + INITIALIZER_NAME
       end
     end
 
     def create_certificates_directory
-      unless File.exist?(CERTIFICATES_PATH) || File.symlink?(CERTIFICATES_PATH)
-        directory(CERTIFICATES_PATH)
 
+      unless File.exist?(Rails.root + CERTIFICATES_PATH)|| File.symlink?(Rails.root + CERTIFICATES_PATH)
+        Dir.mkdir Rails.root + CERTIFICATES_PATH
       end
 
     end
