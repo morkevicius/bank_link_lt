@@ -1,8 +1,8 @@
 require 'rails/generators/base'
 module BankLinkLt
   class InstallGenerator < Rails::Generators::Base
-    #source_root(File.expand_path(File.dirname(__FILE__)))
-    source_root File.expand_path(File.join(File.dirname(__FILE__), 'certificates'))
+    source_root(File.expand_path(File.dirname(__FILE__)))
+    #source_root File.expand_path(File.join(File.dirname(__FILE__), 'certificates'))
 
 
     INITIALIZER_NAME = 'bank_link_lt.rb'
