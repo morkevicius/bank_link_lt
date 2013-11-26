@@ -34,7 +34,7 @@ module BankLinkLt
     end
 
     def generate_certificates
-      puts "run 'rails g bank_link_lt:certificates --certificates_subject /C=country_code/L=city/O=company_name/OU=BankLink/CN=www.your_www.lt/emailAddress=your_company_email/'"
+      puts "run: rails g bank_link_lt:certificates --certificates_subject ''/C=country_code/L=city/O=company_name/OU=BankLink/CN=www.your_www.lt/emailAddress=your_company_email/'"
     end
     private
 #    def Rails.root + options[:certificates_path]

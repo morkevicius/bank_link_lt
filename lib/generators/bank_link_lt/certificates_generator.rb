@@ -31,7 +31,7 @@ module BankLinkLt
           puts "options for #{bank}: #{options[:certificates_subject]}"
           `cd #{Rails.root + options[:certificates_path]} &&
            openssl req -new -nodes -nodes -days 720 -x509 -newkey rsa:1024 -out certificate_for_#{bank}.crt -keyout private_key_for_#{bank}.pem -subj "#{options[:certificates_subject]}" &&
-           && openssl x509 -x509toreq -in certificate_for_#{bank}.crt -out #{bank}_certificate_request.csr -signkey private_key_for_#{bank}.pem`
+           openssl x509 -x509toreq -in certificate_for_#{bank}.crt -out #{bank}_certificate_request.csr -signkey private_key_for_#{bank}.pem`
 
         end
       end
