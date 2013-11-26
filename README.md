@@ -1,4 +1,4 @@
-_bank_link_lt_
+bank_link_lt_
 ============
 
 ### Payments via Lithuanian banks integration gem for Ruby on Rails
