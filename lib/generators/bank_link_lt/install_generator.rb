@@ -1,4 +1,5 @@
 require 'rails/generators/base'
+#require 'etc'
 module BankLinkLt
   class InstallGenerator < Rails::Generators::Base
     source_root(File.expand_path(File.dirname(__FILE__)))
@@ -17,8 +18,9 @@ module BankLinkLt
 
     def create_certificates_directory
 
-      unless File.exist?(Rails.root + CERTIFICATES_PATH)|| File.symlink?(Rails.root + CERTIFICATES_PATH)
+      unless File.directory?(Rails.root + CERTIFICATES_PATH)|| File.symlink?(Rails.root + CERTIFICATES_PATH)
         Dir.mkdir Rails.root + CERTIFICATES_PATH
+        system "chmod  700 #{Rails.root + CERTIFICATES_PATH}"
       end
 
     end
