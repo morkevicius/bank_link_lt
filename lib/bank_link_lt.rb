@@ -22,26 +22,26 @@ end
 
 module BankLinkLt
 
-  class Payment
-    def initialize(type, params_hash)
-      if type.nil?
-        return raise 'No bank type provided'
-
-      else
-        if type == 'Swedbank'
-          return BankLinkLt::PaymentSwedBank.new(params_hash)
-        elsif type == 'Seb'
-          return BankLinkLt::PaymentSeb.new(params_hash)
-        else
-          raise 'Bank not recognized'
-        end
-      end
-    end
-  end
+  #class Payment
+  #  def initialize(type, params_hash)
+  #    if type.nil?
+  #      return raise 'No bank type provided'
+  #
+  #    else
+  #      if type == 'Swedbank'
+  #        return BankLinkLt::PaymentSwedBank.new(params_hash)
+  #      elsif type == 'Seb'
+  #        return BankLinkLt::PaymentSeb.new(params_hash)
+  #      else
+  #        raise 'Bank not recognized'
+  #      end
+  #    end
+  #  end
+  #end
   class PaymentSwedBank
     include BankLinkLt::Swedbank
 
-    def initialize(options = {})
+    def initialize(options={})
       self.default_required_params_hash = {
           'VK_SND_ID' => self.get_account_sender_id,
           'VK_SND_ACC' => self.get_account_number,

@@ -91,17 +91,22 @@ module BankLinkLt::Common
     end
   end
 
-  def payment(order_id, amount, currency, message, service_id, return_url)
+  def payment(options={})
+    #order_id, amount, currency, message, service_id, return_url
 
     #puts "amount => #{amount} \n"
     #puts "order_id => #{order_id} \n"
     #puts "message => #{message} \n"
     #puts "amount => #{currency} \n"
     #puts "service_id => #{service_id} \n"
-    @request_params_hash = self.generate_request_params_hash(service_id, amount, order_id, message, currency)
-    @request_params_hash = self.add_return_url(@request_params_hash, return_url)
+    if options.blank? || options[:order_id].blank? || options[:amount].blank? || options[:currency].blank? || options[:message].blank? || options[:service_id].blank? || options[:return_url].blank?
+      raise 'not enough params'
+
+    end
+    @request_params_hash = self.generate_request_params_hash(options[:service_id], options[:amount], options[:order_id], options[:message], options[:currency])
+    @request_params_hash = self.add_return_url(@request_params_hash, options[:return_url])
     @request_params_hash = self.encode_to_default_encoding(@request_params_hash)
-    @request_params_hash = self.add_mac_to_request_params_hash(service_id, @request_params_hash)
+    @request_params_hash = self.add_mac_to_request_params_hash(options[:service_id], @request_params_hash)
 
 
   end
