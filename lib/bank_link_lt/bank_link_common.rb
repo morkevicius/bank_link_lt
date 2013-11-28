@@ -99,8 +99,8 @@ module BankLinkLt::Common
     #puts "message => #{message} \n"
     #puts "amount => #{currency} \n"
     #puts "service_id => #{service_id} \n"
-    if options.blank? || options[:order_id].blank? || options[:amount].blank? || options[:currency].blank? || options[:message].blank? || options[:service_id].blank? || options[:return_url].blank?
-      raise 'not enough params'
+    if options.empty? || options[:order_id].nil? || options[:amount].nil? || options[:currency].nil? || options[:message].nil? || options[:service_id].nil? || options[:return_url].nil?
+      raise 'not enough params' + "options.nil? => #{options.nil?}, options[:order_id].nil? => #{options[:order_id].nil?}, options[:amount].nil? => #{options[:amount].nil?},  options[:currency].nil? => #{options[:currency].nil?},  options[:message].nil? => #{options[:message].nil?}, options[:service_id].nil? => #{options[:service_id].nil?}, options[:return_url].nil? => #{options[:return_url].nil?}"
 
     end
     @request_params_hash = self.generate_request_params_hash(options[:service_id], options[:amount], options[:order_id], options[:message], options[:currency])
