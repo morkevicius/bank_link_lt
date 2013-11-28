@@ -4,8 +4,8 @@ module BankLinkLt::FormHelper
       options[:request_params_hash].each do |key, value|
         concat(tag(:input, :name => key, :value => value, :type => :hidden))
       end
-      unless options[:submit].nil? && options[:submit][:render] == false && options[:submit][:name].nil?
-        concat(submit_tag(options[:submit_name]))
+      if !options[:submit].nil? && options[:submit][:render] == true && !options[:submit][:name].nil?
+        concat(submit_tag(options[:submit][:name]))
       end
     end
   end
