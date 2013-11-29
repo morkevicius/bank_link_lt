@@ -61,7 +61,7 @@ module BankLinkLt::Common
   def validate_bank_signature(params={})
     if !params.empty?
       signature = Base64.decode64(params['VK_MAC'])
-      self.get_bank_public_key.verify(OpenSSL::Digest::SHA1.new, signature, generate_data_string(params['VK_SERVICE'], params))
+      self.get_bank_public_key.verify(OpenSSL::Digest::SHA1.new, signature, generate_data_string(params['VK_SERVICE'].to_i, params))
     else
       false
     end
