@@ -58,7 +58,16 @@ module BankLinkLt::Common
   # “0041002003008006TRADER01012345678900041.99003LVL01201012001-001000”
 
 
-   def normalize_length(val)
+  def validate_bank_signature(params={})
+    if params.empty?
+      signature = Base64.decode64(params['VK_MAC'])
+      self.get_bank_public_key.verify(OpenSSL::Digest::SHA1.new, signature, generate_data_string(params['VK_SERVICE'], params))
+    else
+      false
+    end
+  end
+
+  def normalize_length(val)
     sprintf('%03i', val.length)
   end
 
@@ -114,10 +123,11 @@ module BankLinkLt::Common
   def add_return_url(request_params_hash, return_url)
     if request_params_hash.is_a?(Hash)
       request_params_hash.merge('VK_RETURN' => return_url)
-    #  seb => URL to which response is sent in performing the transaction. HTTPS URL is required | MAX_LENGTH = 60
-    #  swed => URL where the transaction response query is s ent (1101, 1901) | MAX_LENGTH = 150
+      #  seb => URL to which response is sent in performing the transaction. HTTPS URL is required | MAX_LENGTH = 60
+      #  swed => URL where the transaction response query is sent (1101, 1901) | MAX_LENGTH = 150
     end
   end
+
   def add_mac_to_request_params_hash(service_id, request_params_hash)
     if request_params_hash.is_a?(Hash)
       request_params_hash.merge('VK_MAC' => self.generate_mac(service_id, request_params_hash))
@@ -158,7 +168,6 @@ module BankLinkLt::Common
 
           elsif param == 'VK_MSG'
             request_hash["#{param}"] = message.to_s
-
 
 
           else
