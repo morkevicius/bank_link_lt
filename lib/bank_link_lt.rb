@@ -62,8 +62,7 @@ module BankLinkLt
           'VK_ACC' => self.get_account_number,
           'VK_NAME' => self.get_account_name,
           'VK_VERSION' => '008',
-          'VK_CHARSET' => 'WINDOWS-1257',
-          'VK_LANG' => 'LIT'
+          'VK_CHARSET' => 'WINDOWS-1257'
       }
 
       self.default_required_params_hash.freeze

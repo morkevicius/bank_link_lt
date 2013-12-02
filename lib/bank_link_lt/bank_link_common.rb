@@ -114,6 +114,7 @@ module BankLinkLt::Common
     end
     @request_params_hash = self.generate_request_params_hash(options[:service_id], options[:amount], options[:order_id], options[:message], options[:currency])
     @request_params_hash = self.add_return_url(@request_params_hash, options[:return_url])
+    @request_params_hash = add_lang_param(@request_params_hash)
     @request_params_hash = self.encode_to_default_encoding(@request_params_hash)
     @request_params_hash = self.add_mac_to_request_params_hash(options[:service_id], @request_params_hash)
 
@@ -135,7 +136,7 @@ module BankLinkLt::Common
   end
 
   def add_lang_param(request_params_hash)
-    if request_params_hash.is_a?(Hash)
+    if request_params_hash.is_a?(Hash) && !self.preferred_language.nil? && ['LIT', 'LAT', 'EST', 'ENG', 'RUS'].include?(self.preferred_language)
       request_params_hash.merge('VK_LANG' => self.preferred_language)
     end
   end
