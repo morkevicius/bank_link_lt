@@ -41,7 +41,7 @@ module BankLinkLt::Swedbank
   end
 
   def encoding_param_hash
-    {'VK_CHARSET' => 'UTF-8'}
+    {'VK_ENCODING' => 'UTF-8'}
   end
 
   def encode_to_default_encoding(request_params_hash)
