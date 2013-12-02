@@ -158,7 +158,7 @@ module BankLinkLt::Common
             request_hash["#{param}"] = "#{order_id}-#{Time.now.to_i}"
 
           elsif param == 'VK_AMOUNT'
-            request_hash["#{param}"] = amount.to_s
+            request_hash["#{param}"] = number_to_currency(amount, :precision => 2)
 
           elsif param == 'VK_CURR'
             request_hash["#{param}"] = currency.to_s
