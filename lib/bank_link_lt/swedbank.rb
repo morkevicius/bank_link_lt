@@ -45,8 +45,8 @@ module BankLinkLt::Swedbank
   end
 
   def encode_to_default_encoding(request_params_hash)
-    request_params_hash
-    #request_params_hash.merge(self.encoding_param_hash)
+    #request_params_hash
+    request_params_hash.merge(self.encoding_param_hash)
     #request_params_hash.merge(self.encoding_param_hash).
     #    each { |key, value| request_params_hash[key] = value.force_encoding(Encoding:UTF_8) rescue value }
   end
