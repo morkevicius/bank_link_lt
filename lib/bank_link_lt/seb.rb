@@ -46,13 +46,15 @@ module BankLinkLt::Seb
 
   #.force_encoding(Encoding::Windows_1257)
   #
-  #def encoding_param_hash
-  #  {'VK_CHARSET' => 'UTF-8'}
-  #end
+  def encoding_param_hash
+    {'VK_CHARSET' => 'UTF-8'}
+  end
 
   def encode_to_default_encoding(request_params_hash)
-    request_params_hash
-    #  request_params_hash.each{ |key, value| request_params_hash[key] = value.force_encoding(Encoding::Windows_1257) rescue value}
+    #request_params_hash.merge(self.encoding_param_hash)
+
+    #request_params_hash
+    request_params_hash.each{ |key, value| request_params_hash[key] = value.force_encoding(Encoding::Windows_1257) rescue value}
 
   end
 
