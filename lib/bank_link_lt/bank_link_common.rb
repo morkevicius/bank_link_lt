@@ -68,6 +68,7 @@ module BankLinkLt::Common
   end
 
   def normalize_length(val)
+    Rails.logger.info("MMMMM #{val} length = #{sprintf('%03i', val.length)}")
     sprintf('%03i', val.length)
   end
 
