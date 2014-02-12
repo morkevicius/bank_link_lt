@@ -54,7 +54,7 @@ module BankLinkLt::Seb
     #request_params_hash.merge(self.encoding_param_hash)
 
     #request_params_hash
-    request_params_hash.each{ |key, value| request_params_hash[key] = value.force_encoding(Encoding::Windows_1257) rescue value}
+    request_params_hash.each{ |key, value| request_params_hash[key] = value} #.force_encoding(Encoding::Windows_1257) rescue value}
 
   end
 
